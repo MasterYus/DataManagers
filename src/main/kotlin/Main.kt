@@ -9,6 +9,8 @@ import kotlin.reflect.jvm.jvmErasure
 /**
  * Data class for sensor data encapsulation
  *
+ * @param socket_id socket(device) unique id
+ * @param socket_name socket(device) symbolic name (readable for user)
  * @param current analog float value from current sensor
  * @param smoke percentage of CO2 gas persistence
  * @param temp celsius degrees from temp sensor
