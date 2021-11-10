@@ -1,6 +1,7 @@
 import util.HTMLparser
 import util.JSONparser
 import util.XMLparser
+import java.io.File
 import kotlin.jvm.Throws
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
@@ -43,6 +44,15 @@ data class DataModel(
             String::class -> str
             else -> throw IllegalArgumentException("'$str' cannot be converted to $type")
         }
+
+        /**
+         * Simple function for saving text data to file
+         * @param name file name with extension
+         * @param content string with any data
+         */
+        fun whriteToFile(name: String,content: String){
+            File(name).writeText(content)
+        }
     }
 }
 
@@ -57,18 +67,21 @@ fun main(args: Array<String>) {
     with(htmlParser.toHTML(testData)){
         println(this)
         println(htmlParser.fromHTML(this))
+        DataModel.whriteToFile("data.html",this)
     }
     //JSON forming and parsing
     val jsonParser = JSONparser()
     with(jsonParser.toJSON(testData)){
         println(this)
         println(jsonParser.fromJSON(this))
+        DataModel.whriteToFile("data.json",this)
     }
     //XML forming and parsing
     val xmlParser = XMLparser()
     with(xmlParser.toXML(testData)){
         println(this)
         println(xmlParser.fromXML(this))
+        DataModel.whriteToFile("data.xml",this)
     }
 
 }
